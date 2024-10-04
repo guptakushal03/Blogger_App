@@ -10,10 +10,10 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = "GuniBloggingApp"
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Python311/Projects/Flask Blogger App/website/database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'database.db'
 
-    # app.config['GOOGLE_CLIENT_ID'] = "789306340154-i4cve703ga7ehvi86u3bsu7g9p6b9fg1.apps.googleusercontent.com"
-    # app.config['GOOGLE_CLIENT_SECRET'] = "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"
+    # app.config['GOOGLE_CLIENT_ID'] = ""
+    # app.config['GOOGLE_CLIENT_SECRET'] = ""
 
     db.init_app(app)
 
