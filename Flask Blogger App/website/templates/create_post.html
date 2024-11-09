@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div
+    style="width: 1000px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+
+    <h1 align="center" style="color: #212529; font-size: 2rem; font-weight: bold;">Make a Post</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <textarea name="text" id="text" class="form-control" rows="15" placeholder="Write your post here..." style="border: 1px solid #212529; border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);"></textarea>
+        <br />
+        <input type="file" name="image" accept="image/*" class="form-control" />
+        <br />
+        <div class="buttons" style=" width: 100%; display: inline-flex;">
+            <div align="center" class="b1" style="width: 100%;">
+                <button type="submit" class="btn btn-lg" style="background-color: #212529;width: 99%; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 1.1rem; transition: background-color 0.3s;">
+                    <i class="fas fa-paper-plane me-2"></i> Post
+                </button>
+            </div>
+            <div align="center" class="b2"style="width: 100%;" >
+                <a href="/home">
+                    <button type="button" class="btn btn-lg" style="background-color: #ff7500;width: 99%; color: #ffffff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 1.1rem; transition: background-color 0.3s;">
+                        <i class="fas fa-arrow-left me-2"></i> Back
+                    </button>
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<style>
+    button:hover {
+        background-color: #ff7500;
+    }
+
+    textarea:focus {
+        outline: none;
+        border-color: #ff7500;
+        box-shadow: 0 0 5px rgba(255, 117, 0, 0.5);
+    }
+</style>
+{% endblock %}
