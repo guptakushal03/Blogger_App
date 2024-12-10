@@ -49,8 +49,6 @@ Once the server starts, open your browser and go to `http://127.0.0.1:5000` to v
 
 ---
 
----
-
 ## Technologies Used
 
 - **Flask** - Web framework for Python
