@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script
+        src="https://kit.fontawesome.com/999ca2bb93.js"
+        crossorigin="anonymous"
+    ></script>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+
+        .navbar-nav {
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-warning {
+            background-color: #ff7500;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background-color: #e67e22;
+        }
+
+        .alert {
+            margin: 20px 0;
+            background-color: #ffa79f93;
+        }
+
+        .container {
+            margin-top: 20px;
+            background-color: #ffffff;
+            width: max-content;
+        }
+
+        /* Sign up */
+        .login-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 900px;
+            width: 350px;
+            border-top: 5px solid #ff6f61;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        label {
+            padding-top: 10px;
+        }
+
+        .btn-primary {
+            margin-top: 10px;
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            background-color: #000000;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .forgot-password {
+            margin-top: 15px;
+        }
+
+        /* Sign up */
+        .main-content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .login-link {
+            margin-top: 15px;
+        }
+
+        .signup-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 350px;
+            border-top: 5px solid #ff6f61;
+        }
+        h1 {
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        /* Card Styles */
+        .card {
+            border: none;
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.2s; 
+            width: 80%;
+        }
+
+        .card-header {
+            background-color: #000000;
+            color: white;
+            padding: 15px 20px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 10px 15px;
+            font-size: 1rem;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #000000;
+            border-color: #000000;
+        }
+
+        /* Input Group Styles */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        /* Comment Link Styles */
+        .comment-link {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .comment-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Summary Container Styles
+        .summary-container {
+            display: none;
+            padding: 10px;
+            background-color: #e2e6ea;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        */
+        
+        /* Misc Styles */
+        .text-muted {
+            color: #7f8c8d;
+        }
+
+        /* Dropdown Item Styles */
+        .dropdown-item {
+            color: #c0392b;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(192, 57, 43, 0.1);
+        }
+
+        /* Flexbox for Post Actions */
+        .d-flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        /* Card Text */
+        .card-text {
+            margin-bottom: 15px;
+        }
+
+        /* Margin adjustments */
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="/home">Home</a>
+                    {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{{ url_for('views.view_likes', author=user.id) }}">Likes</a>
+                        <a class="nav-item nav-link" href="/logout">Logout</a>
+                        <a class="nav-item nav-link" href="/recommend">Recommendations</a>
+                        <a class="nav-item nav-link" href="/create-post">Create a Post</a>
+                    {% else %}
+                        <a class="nav-item nav-link" href="/login">Login</a>
+                        <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == "error" %}
+                    <div class="alert alert-danger alter-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alter-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        <div class="main-content">{% block content %}{% endblock %}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script
+        type="text/javascript"
+        src="{{ url_for('static', filename='index.js')}}">
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all summary forms on the page
+            const summaryForms = document.querySelectorAll('form.summarize-form');
+    
+            summaryForms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+    
+                    const postId = form.getAttribute('data-post-id');
+                    const postText = form.querySelector('input[name="post_text"]').value;
+  
+                    fetch(`/summarise/${postId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams({
+                            'post_text': postText
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            const summaryContainer = form.nextElementSibling;
+                            summaryContainer.innerHTML = `<div class="alert alert-secondary">${data.summary}</div>`;
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
+    
+</body>
+
+</html>
