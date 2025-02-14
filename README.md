@@ -68,12 +68,4 @@ If you'd like to contribute to this project, feel free to fork the repository, m
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## Contact
-
-For any issues or questions, please feel free to contact [guptakushal2003@gmail.com].
-
----
+This project is open-source and available under the MIT License.
